@@ -15,7 +15,7 @@ class ConwaysGOF {
     
     private init() {}
     
-    func setInitialState() -> Set<Point> {
+    private func setInitialState() -> Set<Point> {
         //read input
         guard let path = Bundle.main.path(forResource: "input", ofType: "txt") else {
             fatalError("Could not get path to input file.")
@@ -47,14 +47,14 @@ class ConwaysGOF {
     func createNextGen(from aliveCells: Set<Point>) -> Set<Point> {
         var neighborCount: [Point: Int] = [:]
 
-        let neighboursDirections = [
+        let neighborsDirections = [
             (-1, -1), (0, -1), (1, -1),
             (-1,  0), (1,  0),
             (-1,  1), (0,  1), (1,  1)
         ]
 
         for cell in aliveCells {
-            for direction in neighboursDirections {
+            for direction in neighborsDirections {
                 let neighbor = Point(x: cell.x + Int64(direction.0), y: cell.y + Int64(direction.1))
                 neighborCount[neighbor, default: 0] += 1
             }
